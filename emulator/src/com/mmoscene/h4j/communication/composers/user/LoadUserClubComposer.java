@@ -4,6 +4,7 @@ import com.mmoscene.h4j.H4J;
 import com.mmoscene.h4j.communication.Response;
 
 public class LoadUserClubComposer {
+    //TO-DO: Make this dynamic
     public static Response compose(int days) {
         Response response = new Response();
 

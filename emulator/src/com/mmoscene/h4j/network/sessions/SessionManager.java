@@ -31,4 +31,20 @@ public class SessionManager {
 
         c.disconnect();
     }
+
+    /**
+     * Query the list for a session by its channel.
+     * @param channel The channel of the session
+     * @return Session if found, null if not.
+     */
+    public Session getByChannel(Channel channel) {
+        if(this.channels.contains(channel)) {
+
+            return (Session)channel.getAttachment();
+        }
+
+        return null;
+    }
+
+
 }
