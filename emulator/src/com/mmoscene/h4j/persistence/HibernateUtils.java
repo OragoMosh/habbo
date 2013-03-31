@@ -6,4 +6,10 @@ package com.mmoscene.h4j.persistence;
  *
  */
 public class HibernateUtils {
+
+    /**
+     *
+     */
+
+
 }
