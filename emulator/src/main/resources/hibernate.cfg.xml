@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.provider_class">com.jolbox.bonecp.provider.BoneCPConnectionProvider</property>
+        <property name="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>
+        <property name="hibernate.connection.url">jdbc:hsqldb:hsql://localhost/chromide</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">adil123</property>
+        <property name="current_session_context_class">thread</property>
+
+        <!-- BoneCP -->
+        <property name="bonecp.idleMaxAgeInMinutes">240</property>
+        <property name="bonecp.setIdleConnectionTestPeriodInMinutes">1</property>
+        <property name="bonecp.partitionCount">3</property>
+        <property name="bonecp.acquireIncrement">10</property>
+        <property name="bonecp.maxConnectionsPerPartition">60</property>
+        <property name="bonecp.minConnectionsPerPartition">20</property>
+        <property name="bonecp.statementsCacheSize">50</property>
+        <property name="bonecp.releaseHelperThreads">3</property>
+
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.H2Dialect</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+
+        <!--  Stop Hibernate complaining -->
+        <property name="javax.persistence.validation.mode">none</property>
+
+        <!-- Mapping files -->
+
+
+
+    </session-factory>
+</hibernate-configuration>
