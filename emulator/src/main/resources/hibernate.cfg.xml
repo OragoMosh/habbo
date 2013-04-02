@@ -5,8 +5,8 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.provider_class">com.jolbox.bonecp.provider.BoneCPConnectionProvider</property>
-        <property name="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>
-        <property name="hibernate.connection.url">jdbc:hsqldb:hsql://localhost/chromide</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost/chromide</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">adil123</property>
         <property name="current_session_context_class">thread</property>
@@ -31,7 +31,7 @@
         <property name="javax.persistence.validation.mode">none</property>
 
         <!-- Mapping files -->
-
+        <mapping class="com.mmoscene.h4j.habbohotel.user.Habbo"/>
 
 
     </session-factory>
