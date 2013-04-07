@@ -29,6 +29,27 @@ public class SessionManager {
             H4J.getLogger(SessionManager.class.getName()).info("Closed Connection with " + ((Session) c.getAttachment()).getIP());
         }
 
+        ((Session) c.getAttachment()).getHabbo().getMessenger().setUpdate(false);
         c.disconnect();
+    }
+
+    public boolean getOnlineStatusById(int id) {
+
+        for(Channel c : channels) {
+            if (((Session)c.getAttachment()).getHabbo().getId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Session getSessionById(int id) {
+
+        for(Channel c : channels) {
+            if (((Session) c.getAttachment()).getHabbo().getId() == id) {
+                return (Session) c.getAttachment();
+            }
+        }
+        return null;
     }
 }

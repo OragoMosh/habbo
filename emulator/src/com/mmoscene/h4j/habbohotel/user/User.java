@@ -1,5 +1,7 @@
 package com.mmoscene.h4j.habbohotel.user;
 
+import com.mmoscene.h4j.habbohotel.messenger.MessengerManager;
+
 public class User {
     private int id;
     private int credits;
@@ -20,6 +22,8 @@ public class User {
     private String last_active;
 
     private char gender;
+
+    private MessengerManager messenger;
 
     public int getId() {
         return id;
@@ -159,5 +163,13 @@ public class User {
 
     public void append() {
 
+    }
+
+    public void startMessenger() {
+        messenger = new MessengerManager(this);
+    }
+
+    public MessengerManager getMessenger() {
+        return messenger;
     }
 }

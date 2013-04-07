@@ -45,7 +45,7 @@ public class Network {
 
     public void listen() {
         try {
-            bootstrap.bind(new InetSocketAddress(new Integer(H4J.getConfig().get("network.port"))));
+            bootstrap.bind(new InetSocketAddress(H4J.getConfig().get("network.address"), new Integer(H4J.getConfig().get("network.port"))));
             H4J.getLogger(Network.class.getName()).info("Network loaded successfully!");
         } catch (Exception ex) {
             H4J.getLogger(Network.class.getName()).error(ex.getMessage());

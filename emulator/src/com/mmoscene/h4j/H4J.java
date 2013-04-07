@@ -1,9 +1,7 @@
 package com.mmoscene.h4j;
 
 import com.mmoscene.h4j.communication.CommunicationManager;
-import com.mmoscene.h4j.database.DatabaseObject;
-import com.mmoscene.h4j.database.grizzly.Grizzly;
-import com.mmoscene.h4j.database.phoenix.Phoenix;
+import com.mmoscene.h4j.database.DAO;
 import com.mmoscene.h4j.habbohotel.HabboHotel;
 import com.mmoscene.h4j.miscellaneous.Version;
 import com.mmoscene.h4j.network.Network;
@@ -14,7 +12,7 @@ import org.apache.log4j.Logger;
 
 public class H4J {
 
-    private static Version version = new Version(0, 0, 0, 7);
+    private static Version version = new Version(0, 0, 1, 11);
 
     private static Config config = new Config();
     private static Network network = new Network();
@@ -22,11 +20,13 @@ public class H4J {
     private static StorePool pool = new StorePool();
 
     private static HabboHotel habbo_hotel;
-    private static DatabaseObject db_obj;
+    private static DAO db_obj;
     private static CommunicationManager communication_manager;
 
     public static void main(String[] args) {
         getLogger().info("Habbo 4 Java - " + version.string);
+        getLogger().info("#TeamChromide Edition");
+        getLogger().info("Makarov, Adil, Mikkel, Zak, Scott, Tren");
         header.load();
         getLogger().info(header.get("ReleaseCode"));
         getLogger().info("");
@@ -34,18 +34,7 @@ public class H4J {
         config.load("props/server.properties");
         network.listen();
         pool.load();
-
-        if (config.get("environment.database.type").equalsIgnoreCase("grizzly")) {
-            db_obj = new Grizzly();
-            getLogger().info("Binded to the Grizzly database type!");
-        } else if(config.get("environment.database.type").equalsIgnoreCase("phoenix")) {
-            db_obj = new Phoenix();
-            getLogger().info("Binded to the Phoenix database type!");
-        } else {
-            getLogger().info("Unsupported database type selected, please fix!");
-            System.exit(0);
-        }
-
+        db_obj = new DAO();
         communication_manager = new CommunicationManager();
 
         habbo_hotel = new HabboHotel();
@@ -71,7 +60,7 @@ public class H4J {
         return pool;
     }
 
-    public static DatabaseObject getDAO() {
+    public static DAO getDAO() {
         return db_obj;
     }
 
