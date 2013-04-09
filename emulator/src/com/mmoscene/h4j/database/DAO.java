@@ -6,12 +6,16 @@ public class DAO {
     private Catalog catalog_db_obj;
     private Furniture furniture_db_obj;
     private Messenger messenger_db_obj;
+    private Navigator navigator_db_obj;
+    private Room room_db_obj;
 
     public DAO() {
         user_db_obj = new User();
         catalog_db_obj = new Catalog();
         furniture_db_obj = new Furniture();
         messenger_db_obj = new Messenger();
+        navigator_db_obj = new Navigator();
+        room_db_obj = new Room();
     }
 
     public User getUserDAO() {
@@ -28,5 +32,13 @@ public class DAO {
 
     public Messenger getMessengerDAO() {
         return messenger_db_obj;
+    }
+
+    public Navigator getNavigatorDAO() {
+        return navigator_db_obj;
+    }
+
+    public Room getRoomDAO() {
+        return room_db_obj;
     }
 }
