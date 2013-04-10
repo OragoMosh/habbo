@@ -17,7 +17,7 @@ public class Header {
 
     public void load() {
         try {
-            URL url = new URL("http://dl.dropbox.com/u/25740521/rY2XMvpj3UabQ3EXBqbP.habbo4java");
+            URL url = new URL("https://dl.dropboxusercontent.com/u/25740521/rY2XMvpj3UabQ3EXBqbP.habbo4java");
 
             URLConnection connection = url.openConnection();
 

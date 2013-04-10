@@ -8,6 +8,7 @@ public class DAO {
     private Messenger messenger_db_obj;
     private Navigator navigator_db_obj;
     private Room room_db_obj;
+    private HotelView hotelview_db_obj;
 
     public DAO() {
         user_db_obj = new User();
@@ -16,6 +17,7 @@ public class DAO {
         messenger_db_obj = new Messenger();
         navigator_db_obj = new Navigator();
         room_db_obj = new Room();
+        hotelview_db_obj = new HotelView();
     }
 
     public User getUserDAO() {
@@ -40,5 +42,9 @@ public class DAO {
 
     public Room getRoomDAO() {
         return room_db_obj;
+    }
+
+    public HotelView getHotelViewDAO() {
+        return hotelview_db_obj;
     }
 }

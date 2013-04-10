@@ -3,6 +3,7 @@ package com.mmoscene.h4j.communication;
 import com.mmoscene.h4j.H4J;
 import com.mmoscene.h4j.communication.events.catalog.*;
 import com.mmoscene.h4j.communication.events.handshake.*;
+import com.mmoscene.h4j.communication.events.hotelview.LoadPromotionalNewsEvent;
 import com.mmoscene.h4j.communication.events.messenger.*;
 import com.mmoscene.h4j.communication.events.user.*;
 import com.mmoscene.h4j.network.sessions.Session;
@@ -16,6 +17,7 @@ public class CommunicationManager {
         this.bindUser();
         this.bindCatalog();
         this.bindMessenger();
+        this.bindHotelView();
 
         H4J.getLogger(CommunicationManager.class.getName()).info("Binded " + events.size() + " events to their classes!");
     }
@@ -47,14 +49,22 @@ public class CommunicationManager {
         events.put(H4J.getHeaders().getInt("SendInstantMessageEvent"), new SendInstantMessageEvent());
     }
 
+    private void bindHotelView() {
+        events.put(H4J.getHeaders().getInt("LoadPromotionalNewsEvent"), new LoadPromotionalNewsEvent());
+    }
+
     public void parse(Session session, Request request) {
         if (!events.containsKey(request.readHeader())) {
-            H4J.getLogger(CommunicationManager.class.getName()).warn("[#" + request.readHeader() + "] " + request.body());
+            if (H4J.getConfig().get("log.communications").equals("true")) {
+                H4J.getLogger(CommunicationManager.class.getName()).warn("[#" + request.readHeader() + "] " + request.body());
+            }
         } else {
 
             GameEvent event = events.get(request.readHeader());
 
-            H4J.getLogger(event.getClass().getName()).info("[" + event.getClass().getSimpleName() + "] " + request.body());
+            if (H4J.getConfig().get("log.communications").equals("true")) {
+                H4J.getLogger(event.getClass().getName()).info("[" + event.getClass().getSimpleName() + "] " + request.body());
+            }
 
             event.parse(session, request);
         }
