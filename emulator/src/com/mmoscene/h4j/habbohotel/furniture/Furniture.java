@@ -3,33 +3,15 @@ package com.mmoscene.h4j.habbohotel.furniture;
 import org.magicwerk.brownies.collections.GapList;
 
 public class Furniture {
-    private int id;
-    private int width;
-    private int length;
-    private int sprite;
-    private int iterate_count;
+    private int id, width, length, sprite, iterate_count;
 
-    private String public_name;
-    private String item_name;
-    private String type;
-    private String interaction;
+    private String public_name, item_name, type, interaction;
 
     private Float stack_height;
 
-    private boolean is_stackable;
-    private boolean is_sitable;
-    private boolean is_walkable;
-    private boolean is_recyclable;
-    private boolean is_tradeable;
-    private boolean is_sellable;
-    private boolean is_giftable;
-    private boolean is_layable;
+    private boolean is_stackable, is_sitable, is_walkable, is_recyclable, is_tradeable, is_sellable, is_giftable, is_layable;
 
     private GapList<Integer> vendors = new GapList<>();
-
-    public Furniture() {
-
-    }
 
     public int getId() {
         return id;

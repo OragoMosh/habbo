@@ -3,9 +3,7 @@ package com.mmoscene.h4j.habbohotel.messenger;
 public class Friend {
     private int id;
 
-    private String username;
-    private String motto;
-    private String look;
+    private String username, motto, look;
 
     public int getId() {
         return id;

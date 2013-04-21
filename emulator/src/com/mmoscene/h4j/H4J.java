@@ -3,6 +3,7 @@ package com.mmoscene.h4j;
 import com.mmoscene.h4j.communication.CommunicationManager;
 import com.mmoscene.h4j.database.DAO;
 import com.mmoscene.h4j.habbohotel.HabboHotel;
+import com.mmoscene.h4j.habbohotel.pathfinding.Position;
 import com.mmoscene.h4j.miscellaneous.Version;
 import com.mmoscene.h4j.network.Network;
 import com.mmoscene.h4j.properties.Config;
@@ -12,7 +13,7 @@ import org.apache.log4j.Logger;
 
 public class H4J {
 
-    private static Version version = new Version(0, 0, 1, 11);
+    private static Version version = new Version(0, 0, 2, 11);
 
     private static Config config = new Config();
     private static Network network = new Network();
@@ -26,7 +27,7 @@ public class H4J {
     public static void main(String[] args) {
         getLogger().info("Habbo 4 Java - " + version.string);
         getLogger().info("#TeamChromide Edition");
-        getLogger().info("Makarov, Adil, Mikkel, Zak, Scott, Tren");
+        getLogger().info("Makarov, Adil, Joe, Zak, Scott, Tren");
         header.load();
         getLogger().info(header.get("ReleaseCode"));
         getLogger().info("");

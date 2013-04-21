@@ -3,8 +3,10 @@ package com.mmoscene.h4j.communication;
 import com.mmoscene.h4j.H4J;
 import com.mmoscene.h4j.communication.events.catalog.*;
 import com.mmoscene.h4j.communication.events.handshake.*;
-import com.mmoscene.h4j.communication.events.hotelview.LoadPromotionalNewsEvent;
+import com.mmoscene.h4j.communication.events.hotelview.*;
 import com.mmoscene.h4j.communication.events.messenger.*;
+import com.mmoscene.h4j.communication.events.navigation.*;
+import com.mmoscene.h4j.communication.events.room.*;
 import com.mmoscene.h4j.communication.events.user.*;
 import com.mmoscene.h4j.network.sessions.Session;
 import gnu.trove.map.hash.THashMap;
@@ -17,40 +19,65 @@ public class CommunicationManager {
         this.bindUser();
         this.bindCatalog();
         this.bindMessenger();
+        this.bindNavigator();
         this.bindHotelView();
+        this.bindRooms();
 
-        H4J.getLogger(CommunicationManager.class.getName()).info("Binded " + events.size() + " events to their classes!");
+        H4J.getLogger(CommunicationManager.class.getName()).info("Binded " + events.size() + " message events to their classes!");
     }
 
     private void bindHandshake() {
-        events.put(H4J.getHeaders().getInt("ReadRevisionEvent"), new ReadRevisionEvent());
-        events.put(H4J.getHeaders().getInt("InitializeCryptologyEvent"), new InitializeCryptologyEvent());
-        events.put(H4J.getHeaders().getInt("SendSecretKeyEvent"), new SendSecretKeyEvent());
-        events.put(H4J.getHeaders().getInt("SendUserTicketEvent"), new SendUserTicketEvent());
+        events.put(H4J.getHeaders().getInt("ReadRevisionMessageEvent"), new ReadRevisionMessageEvent());
+        events.put(H4J.getHeaders().getInt("InitializeCryptologyMessageEvent"), new InitializeCryptologyMessageEvent());
+        events.put(H4J.getHeaders().getInt("SendSecretKeyMessageEvent"), new SendSecretKeyMessageEvent());
+        events.put(H4J.getHeaders().getInt("SendUserTicketMessageEvent"), new SendUserTicketMessageEvent());
     }
 
     private void bindUser() {
-        events.put(H4J.getHeaders().getInt("LoadUserInformationEvent"), new LoadUserInformationEvent());
-        events.put(H4J.getHeaders().getInt("LoadUserClubEvent"), new LoadUserClubEvent());
-        events.put(H4J.getHeaders().getInt("LoadUserProfileEvent"), new LoadUserProfileEvent());
+        events.put(H4J.getHeaders().getInt("LoadUserInformationMessageEvent"), new LoadUserInformationMessageEvent());
+        events.put(H4J.getHeaders().getInt("LoadUserClubMessageEvent"), new LoadUserClubMessageEvent());
+        events.put(H4J.getHeaders().getInt("LoadUserProfileMessageEvent"), new LoadUserProfileMessageEvent());
+        events.put(H4J.getHeaders().getInt("SendPermissionsMessageEvent"), new SendPermissionsMessageEvent());
+        events.put(H4J.getHeaders().getInt("CompleteLoginMessageEvent"), new CompleteLoginMessageEvent());
     }
 
     private void bindCatalog() {
-        events.put(H4J.getHeaders().getInt("LoadCatalogIndexEvent"), new LoadCatalogIndexEvent());
-        events.put(H4J.getHeaders().getInt("LoadCatalogPageEvent"), new LoadCatalogPageEvent());
+        events.put(H4J.getHeaders().getInt("LoadCatalogIndexMessageEvent"), new LoadCatalogIndexMessageEvent());
+        events.put(H4J.getHeaders().getInt("LoadCatalogPageMessageEvent"), new LoadCatalogPageMessageEvent());
     }
 
     private void bindMessenger() {
-        events.put(H4J.getHeaders().getInt("InitializeMessengerEvent"), new InitializeMessengerEvent());
-        events.put(H4J.getHeaders().getInt("SendMessengerSearchEvent"), new SendMessengerSearchEvent());
-        events.put(H4J.getHeaders().getInt("SendFriendRequestEvent"), new SendFriendRequestEvent());
-        events.put(H4J.getHeaders().getInt("AcceptFriendRequestEvent"), new AcceptFriendRequestEvent());
-        events.put(H4J.getHeaders().getInt("UpdateFriendStateEvent"), new UpdateFriendStateEvent());
-        events.put(H4J.getHeaders().getInt("SendInstantMessageEvent"), new SendInstantMessageEvent());
+        events.put(H4J.getHeaders().getInt("InitializeMessengerMessageEvent"), new InitializeMessengerMessageEvent());
+        events.put(H4J.getHeaders().getInt("SendMessengerSearchMessageEvent"), new SendMessengerSearchMessageEvent());
+        events.put(H4J.getHeaders().getInt("SendFriendRequestMessageEvent"), new SendFriendRequestMessageEvent());
+        events.put(H4J.getHeaders().getInt("AcceptFriendRequestMessageEvent"), new AcceptFriendRequestMessageEvent());
+        events.put(H4J.getHeaders().getInt("UpdateFriendStateMessageEvent"), new UpdateFriendStateMessageEvent());
+        events.put(H4J.getHeaders().getInt("SendInstantMessageMessageEvent"), new SendInstantMessageMessageEvent());
+    }
+
+    private void bindNavigator() {
+        events.put(H4J.getHeaders().getInt("RoomCreationMessageEvent"), new RoomCreationMessageEvent());
+        events.put(H4J.getHeaders().getInt("RoomCreationCheckMessageEvent"), new RoomCreationCheckMessageEvent());
+        events.put(H4J.getHeaders().getInt("SendUserRoomListMessageEvent"), new SendUserRoomListMessageEvent());
+        events.put(H4J.getHeaders().getInt("CompleteNavigatorSearchMessageEvent"), new CompleteNavigatorSearchMessageEvent());
+        events.put(H4J.getHeaders().getInt("SendFriendLocationListMessageEvent"), new SendFriendLocationListMessageEvent());
+        events.put(H4J.getHeaders().getInt("SendRecentlyVisitedRoomListMessageEvent"), new SendRecentlyVisitedRoomListMessageEvent());
+        events.put(H4J.getHeaders().getInt("SendFavoriteRoomListMessageEvent"), new SendFavoriteRoomListMessageEvent());
+        events.put(H4J.getHeaders().getInt("SendFriendRoomListMessageEvent"), new SendFriendRoomListMessageEvent());
+        events.put(H4J.getHeaders().getInt("SendPopulatedRoomsMessageEvent"), new SendPopulatedRoomsMessageEvent());
     }
 
     private void bindHotelView() {
-        events.put(H4J.getHeaders().getInt("LoadPromotionalNewsEvent"), new LoadPromotionalNewsEvent());
+        events.put(H4J.getHeaders().getInt("LoadPromotionalNewsMessageEvent"), new LoadPromotionalNewsMessageEvent());
+        //events.put(H4J.getHeaders().getInt("SendHotelViewPieceMessageEvent"), new SendHotelViewPieceEvent());
+    }
+
+    private void bindRooms() {
+        events.put(H4J.getHeaders().getInt("InitializeRoomMessageEvent"), new InitializeRoomMessageEvent());
+        events.put(H4J.getHeaders().getInt("CompleteRoomLoadMessageEvent"), new CompleteRoomLoadMessageEvent());
+        events.put(H4J.getHeaders().getInt("SendRoomSayMessageEvent"), new SendRoomSayMessageEvent());
+        events.put(H4J.getHeaders().getInt("SendRoomShoutMessageEvent"), new SendRoomShoutMessageEvent());
+        events.put(H4J.getHeaders().getInt("RoomActorWalkMessageEvent"), new RoomActorWalkMessageEvent());
     }
 
     public void parse(Session session, Request request) {

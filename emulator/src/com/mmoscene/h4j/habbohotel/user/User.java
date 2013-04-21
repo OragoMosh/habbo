@@ -1,29 +1,18 @@
 package com.mmoscene.h4j.habbohotel.user;
 
 import com.mmoscene.h4j.habbohotel.messenger.MessengerManager;
+import com.mmoscene.h4j.habbohotel.rooms.actors.RoomActor;
 
 public class User {
-    private int id;
-    private int credits;
-    private int pixels;
-    private int currency;
-    private int rank;
-    private int respect;
-    private int daily_respect;
-    private int home;
-    private int name_changes;
-    private int primary_guild;
+    private int id, credits, pixels, currency, rank, respect, daily_respect, home, name_changes, primary_guild;
 
-    private String username;
-    private String email;
-    private String motto;
-    private String look;
-    private String client_key;
-    private String last_active;
+    private String username, email, motto, look, client_key, last_active;
 
     private char gender;
 
     private MessengerManager messenger;
+
+    private RoomActor actor;
 
     public int getId() {
         return id;
@@ -31,6 +20,7 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+        this.setRoomActor(new RoomActor(id));
     }
 
     public int getCredits() {
@@ -171,5 +161,13 @@ public class User {
 
     public MessengerManager getMessenger() {
         return messenger;
+    }
+
+    public RoomActor getRoomActor() {
+        return actor;
+    }
+
+    public void setRoomActor(RoomActor actor) {
+        this.actor = actor;
     }
 }

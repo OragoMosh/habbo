@@ -4,20 +4,11 @@ import com.mmoscene.h4j.H4J;
 import com.mmoscene.h4j.habbohotel.furniture.Furniture;
 
 public class CatalogItem {
-    private int id;
-    private int page;
-    private int cost;
-    private int pixel_cost;
-    private int currency_cost;
-    private int quantity;
-    private int base_id;
+    private int id, page, cost, pixel_cost, currency_cost, quantity, base_id, ltd_stock, ltd_purchased;
 
     private String name;
 
     private Boolean ltd;
-
-    private int ltd_stock;
-    private int ltd_purchased;
 
     public CatalogItem() {
 

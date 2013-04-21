@@ -1,6 +1,7 @@
 package com.mmoscene.h4j.habbohotel.cache;
 
 import com.mmoscene.h4j.H4J;
+import com.mmoscene.h4j.habbohotel.cache.rules.UpdateProperties;
 import com.mmoscene.h4j.habbohotel.cache.rules.UpdateServerPromotionals;
 import org.magicwerk.brownies.collections.GapList;
 
@@ -14,6 +15,7 @@ public class CacheTask implements Runnable {
     public CacheTask() {
 
         rules.add(new UpdateServerPromotionals());
+        rules.add(new UpdateProperties());
 
         t = new Thread(this);
         t.start();
@@ -21,7 +23,7 @@ public class CacheTask implements Runnable {
 
     @Override
     public void run() {
-        while(true) {
+        while(rules.size() >= 1) {
 
             Date start = new Date();
 

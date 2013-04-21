@@ -114,6 +114,26 @@ public class User {
         return id;
     }
 
+    public String getUsernameById(int id) {
+        String username = "";
+
+        try (Connection connection = H4J.getStorage().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("SELECT username FROM server_users WHERE id = ?")) {
+                statement.setInt(1, id);
+
+                try(ResultSet set = statement.executeQuery()) {
+                    while(set.next()) {
+                        username = set.getString("username");
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            H4J.getLogger(User.class.getName()).info(ex.getMessage());
+        }
+
+        return username;
+    }
+
     public void append(com.mmoscene.h4j.habbohotel.user.User user) {
     }
 }

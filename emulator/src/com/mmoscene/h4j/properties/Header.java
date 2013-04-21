@@ -17,8 +17,8 @@ public class Header {
 
     public void load() {
         try {
-            URL url = new URL("https://dl.dropboxusercontent.com/u/25740521/rY2XMvpj3UabQ3EXBqbP.habbo4java");
-
+            //URL url = new URL("https://dl.dropboxusercontent.com/u/25740521/rY2XMvpj3UabQ3EXBqbP.habbo4java");
+            URL url = new URL("http://localhost/rY2XMvpj3UabQ3EXBqbP.habbo4java");
             URLConnection connection = url.openConnection();
 
             prop.load(connection.getInputStream());

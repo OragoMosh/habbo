@@ -34,4 +34,8 @@ public class Session {
     public void setUser(String ticket) {
         this.user = H4J.getDAO().getUserDAO().getUserBySSO(ticket);
     }
+
+    public Channel getChannel() {
+        return channel;
+    }
 }

@@ -5,29 +5,16 @@ import org.magicwerk.brownies.collections.GapList;
 import java.sql.ResultSet;
 
 public class CatalogPage {
-    private int id;
-    private int parent;
-    private int order;
-    private int icon_color;
-    private int icon_image;
-    private int rank;
+    private int id, parent, order, icon_color, icon_image, rank;
 
     private CatalogLayout layout;
 
-    private String title;
+    private String title, header, description;
 
-    private String header;
-    private String description;
-
-    private boolean enabled;
-
-    private boolean use_real_data;
+    private boolean enabled, use_real_data;
 
     private GapList<String> real_headers = new GapList<>();
     private GapList<String> real_texts = new GapList<>();
-
-    public CatalogPage() {
-    }
 
     public int getId() {
         return id;
