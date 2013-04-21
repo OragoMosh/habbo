@@ -18,8 +18,6 @@ public class SendRoomActorStatusMessageComposer {
         response.addInt(p.getRotation());
         response.addString(status);
 
-        H4J.getLogger("a").info(user + " => " + status);
-
         return response;
     }
 }

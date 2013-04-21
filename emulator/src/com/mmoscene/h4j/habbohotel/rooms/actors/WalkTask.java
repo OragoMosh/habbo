@@ -15,17 +15,6 @@ public class WalkTask implements Runnable {
     public void run() {
         while(true) {
             if (actor.isMoving()) {
-                Position p = H4J.getHabboHotel().getPathfinder().getNextNode(
-                        actor.getCurrentPosition(), actor.getGoalPosition(), actor.getCurrentRoom());
-
-                int rotation = actor.getCurrentPosition().calculateRotation(p.getX(), p.getY());
-
-                actor.getCurrentPosition().setX(p.getX());
-                actor.getCurrentPosition().setY(p.getY());
-                actor.getCurrentPosition().setRotation(rotation);
-
-                actor.addStatus("mv", p.getX() + "," + p.getY() + "," + Double.toString(0.0));
-                actor.sendRoomActorStatusMessageComposer();
 
                 if (actor.getCurrentPosition().getX() == actor.getGoalPosition().getX() && actor.getCurrentPosition().getY() == actor.getGoalPosition().getY()) {
                     actor.setMoving(false);
@@ -34,8 +23,20 @@ public class WalkTask implements Runnable {
 
                     actor.removeStatus("mv");
                     actor.sendRoomActorStatusMessageComposer();
-                }
+                } else {
+                    Position p = H4J.getHabboHotel().getPathfinder().getNextNode(
+                            actor.getCurrentPosition(), actor.getGoalPosition(), actor.getCurrentRoom());
 
+                    int rotation = actor.getCurrentPosition().calculateRotation(p.getX(), p.getY());
+
+                    actor.addStatus("mv", p.getX() + "," + p.getY() + "," + Double.toString(0.0));
+
+                    actor.getCurrentPosition().setRotation(rotation);
+                    actor.sendRoomActorStatusMessageComposer();
+
+                    actor.getCurrentPosition().setX(p.getX());
+                    actor.getCurrentPosition().setY(p.getY());
+                }
                 try {
                     Thread.sleep(500);
                 } catch(Exception ex) { }

@@ -62,9 +62,9 @@ public class ComplexPathfinder implements Pathfinder {
                  break;
              }
 
-             move(v);
-
              try {
+                 move(v);
+
                  addAllNeighbors(end, v, room);
              } catch(Exception ignored) {}
          }
@@ -109,7 +109,7 @@ public class ComplexPathfinder implements Pathfinder {
             if (v.getX()[p] != n.getX() && v.getY()[p] != n.getY()) {
                 if (r.getModel().getSquares()[n.getX()][v.getY()[p]] == SquareState.CLOSED ||
                         r.getModel().getSquares()[v.getX()[p]][n.getY()] == SquareState.CLOSED) {
-                    return;
+                    //return;
                 }
             }
         }

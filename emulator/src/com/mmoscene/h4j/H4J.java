@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
 
 public class H4J {
 
-    private static Version version = new Version(0, 0, 2, 11);
+    private static Version version = new Version(0, 0, 3, 17);
 
     private static Config config = new Config();
     private static Network network = new Network();

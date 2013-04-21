@@ -6,6 +6,8 @@ import com.mmoscene.h4j.habbohotel.cache.CacheRule;
 public class UpdateServerPromotionals implements CacheRule {
     @Override
     public void execute() {
-        H4J.getHabboHotel().reloadPromos();
+        try {
+            H4J.getHabboHotel().reloadPromos();
+        } catch(Exception ignored) {}
     }
 }
